@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
+    android:background="#F8F9FA"
     tools:context=".MainActivity">
 
     <!-- Logo Superior Izquierda -->
@@ -30,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Círculo del Chanchito (Icono Principal) -->
+    <!-- Círculo del Banco (Icono Principal) -->
     <ImageView
         android:id="@+id/iv_main_icon"
         android:layout_width="100dp"
@@ -52,6 +53,7 @@
         android:text="Gastos"
         android:textSize="26sp"
         android:textStyle="bold"
+        android:textColor="#333333"
         android:layout_marginTop="12dp"
         app:layout_constraintTop_toBottomOf="@id/iv_main_icon"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,6 +67,7 @@
         android:layout_marginTop="30dp"
         android:hint="@string/hint_descripcion"
         android:inputType="textCapSentences"
+        android:backgroundTint="#7F00FF"
         app:layout_constraintTop_toBottomOf="@id/tv_titulo"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -76,6 +79,7 @@
         android:layout_marginTop="10dp"
         android:hint="@string/hint_monto"
         android:inputType="numberDecimal"
+        android:backgroundTint="#7F00FF"
         app:layout_constraintTop_toBottomOf="@id/et_descripcion"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -83,9 +87,11 @@
     <Button
         android:id="@+id/btn_guardar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_marginTop="20dp"
         android:text="@string/btn_cargar"
+        android:textAllCaps="false"
+        android:textSize="16sp"
         android:backgroundTint="#7F00FF"
         app:layout_constraintTop_toBottomOf="@id/et_monto"
         app:layout_constraintStart_toStartOf="parent" />
@@ -109,10 +115,11 @@
         android:id="@+id/tv_recientes_titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="Gastos Recientes"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="#333333"
         app:layout_constraintTop_toBottomOf="@id/tv_total_display"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -120,15 +127,18 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
+        android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@id/tv_recientes_titulo"
         app:layout_constraintBottom_toBottomOf="parent">
 
+        <!-- Layout Interno para la Lista -->
         <LinearLayout
             android:id="@+id/container_gastos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:paddingBottom="16dp" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

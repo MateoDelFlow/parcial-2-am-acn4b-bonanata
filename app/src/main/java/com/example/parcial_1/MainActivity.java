@@ -1,5 +1,6 @@
 package com.example.parcial_1;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,30 +41,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void cargarGasto() {
-        String desc = etDescripcion.getText().toString();
-        String montoStr = etMonto.getText().toString();
+        String desc = etDescripcion.getText().toString().trim();
+        String montoStr = etMonto.getText().toString().trim();
 
         if (!desc.isEmpty() && !montoStr.isEmpty()) {
             try {
                 double monto = Double.parseDouble(montoStr);
                 totalAcumulado += monto;
 
-                // Actualizamos el texto en pantalla
+                // Se actualiza el texto en pantalla
                 tvTotalDisplay.setText("Total acumulado: $" + totalAcumulado);
 
                 // Creación dinámica
-                // Nuevo TextView desde Java
                 TextView nuevoGasto = new TextView(this);
-                nuevoGasto.setText("• " + desc + ": $" + monto);
-                nuevoGasto.setTextSize(16);
-                nuevoGasto.setPadding(0, 10, 0, 10);
+                nuevoGasto.setText(desc + "\n$" + monto); // Descripción y monto con salto de línea
+                nuevoGasto.setTextSize(17);
+                nuevoGasto.setTypeface(null, Typeface.BOLD); // Texto en negrita para realismo
                 nuevoGasto.setTextColor(getResources().getColor(android.R.color.black));
+                nuevoGasto.setPadding(40, 35, 40, 35); // Espaciado interno de la tarjeta
 
-                // Lo agregamos al contenedor dinámico
-                containerGastos.addView(nuevoGasto);
-                // ------------------------------------------------
+                //Fondo con bordes redondeados
+                nuevoGasto.setBackgroundResource(R.drawable.item_gasto_bg);
 
-                // Limpiamos los campos para el próximo gasto
+                //Márgenes entre tarjetas
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                params.setMargins(0, 0, 0, 25); // Margen de 25px abajo de cada tarjeta
+                nuevoGasto.setLayoutParams(params);
+
+                // Agregado al inicio de la lista (el ultimo arriba)
+                containerGastos.addView(nuevoGasto, 0);
+
+                // Limpiamos campos para siguiente gasto
                 etDescripcion.setText("");
                 etMonto.setText("");
 
