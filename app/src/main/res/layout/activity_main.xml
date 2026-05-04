@@ -5,17 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="#F8F9FA"
+    android:padding="@dimen/padding_main"
+    android:background="@color/background_gray"
     tools:context=".MainActivity">
 
     <!-- Logo Superior Izquierda -->
     <ImageView
         android:id="@+id/iv_top_logo"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="@dimen/logo_size"
+        android:layout_height="@dimen/logo_size"
         android:src="@drawable/ic_top_logo"
-        app:tint="#7F00FF"
+        app:tint="@color/primary_purple"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -24,23 +24,23 @@
         android:id="@+id/tv_brand_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CashFlow"
-        android:textSize="18sp"
+        android:text="@string/brand_name"
+        android:textSize="@dimen/text_brand"
         android:textStyle="bold"
-        android:textColor="#000000"
+        android:textColor="@color/text_black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Círculo del Banco (Icono Principal) -->
     <ImageView
         android:id="@+id/iv_main_icon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
-        android:padding="20dp"
+        android:layout_width="@dimen/main_icon_size"
+        android:layout_height="@dimen/main_icon_size"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:padding="@dimen/padding_icon"
         android:src="@drawable/ic_piggy_bank"
         android:background="@drawable/ic_launcher_background"
-        android:backgroundTint="#7F00FF"
+        android:backgroundTint="@color/primary_purple"
         app:layout_constraintTop_toBottomOf="@id/iv_top_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -50,11 +50,11 @@
         android:id="@+id/tv_titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gastos"
-        android:textSize="26sp"
+        android:text="@string/section_title"
+        android:textSize="@dimen/text_title"
         android:textStyle="bold"
-        android:textColor="#333333"
-        android:layout_marginTop="12dp"
+        android:textColor="@color/text_gray"
+        android:layout_marginTop="@dimen/margin_small"
         app:layout_constraintTop_toBottomOf="@id/iv_main_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -64,10 +64,10 @@
         android:id="@+id/et_descripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/margin_large"
         android:hint="@string/hint_descripcion"
         android:inputType="textCapSentences"
-        android:backgroundTint="#7F00FF"
+        android:backgroundTint="@color/primary_purple"
         app:layout_constraintTop_toBottomOf="@id/tv_titulo"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -76,10 +76,10 @@
         android:id="@+id/et_monto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margin_xsmall"
         android:hint="@string/hint_monto"
         android:inputType="numberDecimal"
-        android:backgroundTint="#7F00FF"
+        android:backgroundTint="@color/primary_purple"
         app:layout_constraintTop_toBottomOf="@id/et_descripcion"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -87,12 +87,12 @@
     <Button
         android:id="@+id/btn_guardar"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginTop="@dimen/margin_medium"
         android:text="@string/btn_cargar"
         android:textAllCaps="false"
-        android:textSize="16sp"
-        android:backgroundTint="#7F00FF"
+        android:textSize="@dimen/text_button"
+        android:backgroundTint="@color/primary_purple"
         app:layout_constraintTop_toBottomOf="@id/et_monto"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -101,11 +101,11 @@
         android:id="@+id/tv_total_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/margin_medium"
         android:text="@string/label_total"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_total"
         android:textStyle="bold"
-        android:textColor="#7F00FF"
+        android:textColor="@color/primary_purple"
         app:layout_constraintTop_toBottomOf="@id/btn_guardar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -115,11 +115,11 @@
         android:id="@+id/tv_recientes_titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Gastos Recientes"
-        android:textSize="18sp"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:text="@string/recientes_title"
+        android:textSize="@dimen/text_subtitle"
         android:textStyle="bold"
-        android:textColor="#333333"
+        android:textColor="@color/text_gray"
         app:layout_constraintTop_toBottomOf="@id/tv_total_display"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -127,7 +127,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/margin_small"
         android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@id/tv_recientes_titulo"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -138,7 +138,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="16dp" />
+            android:paddingBottom="@dimen/padding_list_bottom" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

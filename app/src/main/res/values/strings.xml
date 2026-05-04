@@ -1,8 +1,14 @@
 <resources>
-    <string name="app_name">Control de Gastos</string>
-    <string name="titulo_principal">Mis Gastos</string>
+    <string name="app_name">CashFlow</string>
+    <string name="brand_name">CashFlow</string>
+    <string name="section_title">Gastos</string>
+    <string name="recientes_title">Gastos Recientes</string>
     <string name="hint_descripcion">¿En qué gastaste?</string>
     <string name="hint_monto">Monto ($)</string>
     <string name="btn_cargar">Cargar Gasto</string>
     <string name="label_total">Total acumulado: $0</string>
+    <string name="label_total_update">Total acumulado: $%s</string>
+    <string name="msg_gasto_cargado">Gasto cargado: %s</string>
+    <string name="msg_monto_invalido">Monto invalido</string>
+    <string name="msg_campos_vacios">Completá los campos che</string>
 </resources>

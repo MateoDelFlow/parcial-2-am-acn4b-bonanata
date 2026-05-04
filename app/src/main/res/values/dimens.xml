@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tarjetas dinamicas -->
+    <dimen name="padding_card_h">40dp</dimen>
+    <dimen name="padding_card_v">35dp</dimen>
+    <dimen name="margin_card">25dp</dimen>
+
+    <!-- Layout Principal -->
+    <dimen name="padding_main">24dp</dimen>
+    <dimen name="logo_size">28dp</dimen>
+    <dimen name="main_icon_size">100dp</dimen>
+    <dimen name="margin_xlarge">40dp</dimen>
+    <dimen name="margin_large">30dp</dimen>
+    <dimen name="margin_medium">20dp</dimen>
+    <dimen name="margin_small">12dp</dimen>
+    <dimen name="margin_xsmall">10dp</dimen>
+    <dimen name="button_height">55dp</dimen>
+    <dimen name="padding_icon">20dp</dimen>
+    <dimen name="padding_list_bottom">16dp</dimen>
+
+    <!-- Texto -->
+    <dimen name="text_brand">18sp</dimen>
+    <dimen name="text_title">26sp</dimen>
+    <dimen name="text_button">16sp</dimen>
+    <dimen name="text_total">20sp</dimen>
+    <dimen name="text_subtitle">18sp</dimen>
+</resources>

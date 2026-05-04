@@ -50,15 +50,17 @@ public class MainActivity extends AppCompatActivity {
                 totalAcumulado += monto;
 
                 // Se actualiza el texto en pantalla
-                tvTotalDisplay.setText("Total acumulado: $" + totalAcumulado);
+                tvTotalDisplay.setText(getString(R.string.label_total_update, String.valueOf(totalAcumulado)));
 
                 // Creación dinámica
                 TextView nuevoGasto = new TextView(this);
                 nuevoGasto.setText(desc + "\n$" + monto); // Descripción y monto con salto de línea
                 nuevoGasto.setTextSize(17);
                 nuevoGasto.setTypeface(null, Typeface.BOLD); // Texto en negrita para realismo
-                nuevoGasto.setTextColor(getResources().getColor(android.R.color.black));
-                nuevoGasto.setPadding(40, 35, 40, 35); // Espaciado interno de la tarjeta
+                nuevoGasto.setTextColor(getResources().getColor(R.color.text_black));
+                int padH = (int) getResources().getDimension(R.dimen.padding_card_h);
+                int padV = (int) getResources().getDimension(R.dimen.padding_card_v);
+                nuevoGasto.setPadding(padH, padV, padH, padV); // Espaciado interno de la tarjeta
 
                 //Fondo con bordes redondeados
                 nuevoGasto.setBackgroundResource(R.drawable.item_gasto_bg);
@@ -68,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
-                params.setMargins(0, 0, 0, 25); // Margen de 25px abajo de cada tarjeta
+                int marginB = (int) getResources().getDimension(R.dimen.margin_card);
+                params.setMargins(0, 0, 0, marginB); // Margen de 25px abajo de cada tarjeta
                 nuevoGasto.setLayoutParams(params);
 
                 // Agregado al inicio de la lista (el ultimo arriba)
@@ -78,12 +81,12 @@ public class MainActivity extends AppCompatActivity {
                 etDescripcion.setText("");
                 etMonto.setText("");
 
-                Toast.makeText(this, "Gasto cargado: " + desc, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.msg_gasto_cargado, desc), Toast.LENGTH_SHORT).show();
             } catch (NumberFormatException e) {
-                Toast.makeText(this, "Ingrese un monto válido", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.msg_monto_invalido), Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.msg_campos_vacios), Toast.LENGTH_SHORT).show();
         }
     }
 }
