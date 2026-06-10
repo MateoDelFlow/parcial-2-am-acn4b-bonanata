@@ -11,4 +11,9 @@
     <string name="msg_gasto_cargado">Gasto cargado: %s</string>
     <string name="msg_monto_invalido">Monto invalido</string>
     <string name="msg_campos_vacios">Completá los campos che</string>
+    <string name="hint_email">Correo electrónico</string>
+    <string name="hint_contrasenia">Contraseña</string>
+    <string name="btn_ingresar">Ingresar</string>
+    <string name="btn_registro_link">¿No tienes cuenta? Regístrate</string>
+    <string name="msg_login_exitoso">¡Bienvenido, %s!</string>
 </resources>

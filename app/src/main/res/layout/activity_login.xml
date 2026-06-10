@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_main"
+    android:background="@color/background_gray"
+    tools:context=".LoginActivity">
+
+    <!-- Logo Principal (Chanchito)-->
+    <ImageView
+        android:id="@+id/iv_login_logo"
+        android:layout_width="@dimen/main_icon_size"
+        android:layout_height="@dimen/main_icon_size"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:padding="@dimen/padding_icon"
+        android:src="@drawable/ic_piggy_bank"
+        android:background="@drawable/ic_launcher_background"
+        android:backgroundTint="@color/primary_purple"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Título de la App -->
+    <TextView
+        android:id="@+id/tv_login_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="@dimen/text_title"
+        android:textStyle="bold"
+        android:textColor="@color/text_black"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintTop_toBottomOf="@id/iv_login_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Campo: Email -->
+    <EditText
+        android:id="@+id/et_login_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:hint="@string/hint_email"
+        android:inputType="textEmailAddress"
+        android:backgroundTint="@color/primary_purple"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_title"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Campo: Contraseña -->
+    <EditText
+        android:id="@+id/et_login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:hint="@string/hint_contrasenia"
+        android:inputType="textPassword"
+        android:backgroundTint="@color/primary_purple"
+        app:layout_constraintTop_toBottomOf="@id/et_login_email"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Botón: Ingresar -->
+    <Button
+        android:id="@+id/btn_login_ingresar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:text="@string/btn_ingresar"
+        android:textAllCaps="false"
+        android:textSize="@dimen/text_button"
+        android:backgroundTint="@color/primary_purple"
+        app:layout_constraintTop_toBottomOf="@id/et_login_password"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!--Link de Registro -->
+    <TextView
+        android:id="@+id/tv_login_register_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:text="@string/btn_registro_link"
+        android:textSize="@dimen/text_brand"
+        android:textColor="@color/primary_purple"
+        app:layout_constraintTop_toBottomOf="@id/btn_login_ingresar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
