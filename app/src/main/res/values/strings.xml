@@ -16,4 +16,9 @@
     <string name="btn_ingresar">Ingresar</string>
     <string name="btn_registro_link">¿No tienes cuenta? Regístrate</string>
     <string name="msg_login_exitoso">¡Bienvenido, %s!</string>
+    <string name="title_ajustes">Ajustes</string>
+    <string name="label_moneda">Moneda preferida (USD / ARS)</string>
+    <string name="hint_apodo">Tu apodo (Ej: Pollito)</string>
+    <string name="btn_guardar_ajustes">Guardar Configuración</string>
+    <string name="msg_ajustes_guardados">Configuración guardada localmente</string>
 </resources>
