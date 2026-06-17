@@ -29,6 +29,10 @@
         <activity
             android:name=".ConfiguracionActivity"
             android:exported="false" />
+        <!-- Pantalla de Reportes -->
+        <activity
+            android:name=".ReportesActivity"
+            android:exported="false" />
 
     </application>
 

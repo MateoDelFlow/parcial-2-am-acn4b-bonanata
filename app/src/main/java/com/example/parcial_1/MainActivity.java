@@ -1,6 +1,6 @@
 package com.example.parcial_1;
 
-import android.content.Intent; // Importación necesaria para Intents (Clase 06)
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -16,9 +16,9 @@ public class MainActivity extends AppCompatActivity {
     // Declaramos las variables
     private EditText etDescripcion, etMonto;
     private TextView tvTotalDisplay;
-    private Button btnGuardar;
+    private Button btnGuardar, btnIrReportes;
     private LinearLayout containerGastos; // Variable para el contenedor dinámico
-    private View ivTopLogo; // Variable para el logo superior / botón de ajustes
+    private View ivTopLogo;
     private double totalAcumulado = 0.0;
 
     @Override
@@ -31,10 +31,11 @@ public class MainActivity extends AppCompatActivity {
         etMonto = findViewById(R.id.et_monto);
         tvTotalDisplay = findViewById(R.id.tv_total_display);
         btnGuardar = findViewById(R.id.btn_guardar);
+        btnIrReportes = findViewById(R.id.btn_ir_reportes);
         containerGastos = findViewById(R.id.container_gastos); // Vinculación del contenedor
-        ivTopLogo = findViewById(R.id.iv_top_logo); // Vinculación del logo superior
+        ivTopLogo = findViewById(R.id.iv_top_logo);
 
-        // Evento del botón para cargar gasto (Clase 08)
+        // Evento del botón
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,13 +43,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Evento del logo superior para navegar a Configuración (Clase 06, 08)
         ivTopLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Inicialización de un Intent explícito hacia la clase de destino (Clase 06)
                 Intent intentConfig = new Intent(MainActivity.this, ConfiguracionActivity.class);
-                startActivity(intentConfig); // Ejecución del salto de pantalla (Clase 06)
+                startActivity(intentConfig);
+            }
+        });
+
+        btnIrReportes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentReportes = new Intent(MainActivity.this, ReportesActivity.class);
+                startActivity(intentReportes);
             }
         });
     }
@@ -65,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 // Se actualiza el texto en pantalla
                 tvTotalDisplay.setText(getString(R.string.label_total_update, String.valueOf(totalAcumulado)));
 
-                // Creación dinámica (Clase 08)
+                // Creación dinámica
                 TextView nuevoGasto = new TextView(this);
                 nuevoGasto.setText(desc + "\n$" + monto); // Descripción y monto con salto de línea
                 nuevoGasto.setTextSize(17);
@@ -75,16 +82,16 @@ public class MainActivity extends AppCompatActivity {
                 int padV = (int) getResources().getDimension(R.dimen.padding_card_v);
                 nuevoGasto.setPadding(padH, padV, padH, padV); // Espaciado interno de la tarjeta
 
-                // Fondo con bordes redondeados (Clase 04)
+                //Fondo con bordes redondeados
                 nuevoGasto.setBackgroundResource(R.drawable.item_gasto_bg);
 
-                // Márgenes entre tarjetas
+                //Márgenes entre tarjetas
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
                 int marginB = (int) getResources().getDimension(R.dimen.margin_card);
-                params.setMargins(0, 0, 0, marginB); // Margen abajo de cada tarjeta
+                params.setMargins(0, 0, 0, marginB); // Margen de 25px abajo de cada tarjeta
                 nuevoGasto.setLayoutParams(params);
 
                 // Agregado al inicio de la lista (el ultimo arriba)

@@ -21,4 +21,7 @@
     <string name="hint_apodo">Tu apodo (Ej: Pollito)</string>
     <string name="btn_guardar_ajustes">Guardar Configuración</string>
     <string name="msg_ajustes_guardados">Configuración guardada localmente</string>
+    <string name="title_reportes">Reportes Mensuales</string>
+    <string name="label_gasto_total">Desglose Analítico de Gastos</string>
+    <string name="btn_ver_reportes">Ver Reportes</string>
 </resources>
