@@ -24,4 +24,6 @@
     <string name="title_reportes">Reportes Mensuales</string>
     <string name="label_gasto_total">Desglose Analítico de Gastos</string>
     <string name="btn_ver_reportes">Ver Reportes</string>
+    <string name="msg_error_guardar">Error al guardar en la nube</string>
+    <string name="msg_error_leer">Error al sincronizar datos de la nube</string>
 </resources>

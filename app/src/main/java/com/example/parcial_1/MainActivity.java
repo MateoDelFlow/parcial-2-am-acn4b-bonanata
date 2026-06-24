@@ -10,6 +10,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.android.gms.tasks.OnFailureListener;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout containerGastos; // Variable para el contenedor dinámico
     private View ivTopLogo;
     private double totalAcumulado = 0.0;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +46,61 @@ public class MainActivity extends AppCompatActivity {
         btnIrReportes = findViewById(R.id.btn_ir_reportes);
         containerGastos = findViewById(R.id.container_gastos); // Vinculación del contenedor
         ivTopLogo = findViewById(R.id.iv_top_logo);
+
+        db = FirebaseFirestore.getInstance();
+
+        db.collection("gastos")
+                .orderBy("timestamp", Query.Direction.ASCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null) {
+                            Toast.makeText(MainActivity.this, getString(R.string.msg_error_leer), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        if (value != null) {
+                            containerGastos.removeAllViews();
+                            totalAcumulado = 0.0;
+
+                            for (QueryDocumentSnapshot doc : value) {
+                                String desc = doc.getString("descripcion");
+                                Double monto = doc.getDouble("monto");
+                                if (desc != null && monto != null) {
+                                    totalAcumulado += monto;
+
+                                    // Creación dinámica
+                                    TextView nuevoGasto = new TextView(MainActivity.this);
+                                    nuevoGasto.setText(desc + "\n$" + monto); // Descripción y monto con salto de línea
+                                    nuevoGasto.setTextSize(17);
+                                    nuevoGasto.setTypeface(null, Typeface.BOLD); // Texto en negrita para realismo
+                                    nuevoGasto.setTextColor(getResources().getColor(R.color.text_black));
+                                    int padH = (int) getResources().getDimension(R.dimen.padding_card_h);
+                                    int padV = (int) getResources().getDimension(R.dimen.padding_card_v);
+                                    nuevoGasto.setPadding(padH, padV, padH, padV); // Espaciado interno de la tarjeta
+
+                                    //Fondo con bordes redondeados
+                                    nuevoGasto.setBackgroundResource(R.drawable.item_gasto_bg);
+
+                                    //Márgenes entre tarjetas
+                                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                            LinearLayout.LayoutParams.MATCH_PARENT,
+                                            LinearLayout.LayoutParams.WRAP_CONTENT
+                                    );
+                                    int marginB = (int) getResources().getDimension(R.dimen.margin_card);
+                                    params.setMargins(0, 0, 0, marginB); // Margen de 25px abajo de cada tarjeta
+                                    nuevoGasto.setLayoutParams(params);
+
+                                    // Agregado al inicio de la lista (el ultimo arriba)
+                                    containerGastos.addView(nuevoGasto, 0);
+                                }
+                            }
+
+                            // Se actualiza el texto en pantalla
+                            tvTotalDisplay.setText(getString(R.string.label_total_update, String.valueOf(totalAcumulado)));
+                        }
+                    }
+                });
 
         // Evento del botón
         btnGuardar.setOnClickListener(new View.OnClickListener() {
@@ -67,35 +134,20 @@ public class MainActivity extends AppCompatActivity {
         if (!desc.isEmpty() && !montoStr.isEmpty()) {
             try {
                 double monto = Double.parseDouble(montoStr);
-                totalAcumulado += monto;
 
-                // Se actualiza el texto en pantalla
-                tvTotalDisplay.setText(getString(R.string.label_total_update, String.valueOf(totalAcumulado)));
+                Map<String, Object> gasto = new HashMap<>();
+                gasto.put("descripcion", desc);
+                gasto.put("monto", monto);
+                gasto.put("timestamp", System.currentTimeMillis());
 
-                // Creación dinámica
-                TextView nuevoGasto = new TextView(this);
-                nuevoGasto.setText(desc + "\n$" + monto); // Descripción y monto con salto de línea
-                nuevoGasto.setTextSize(17);
-                nuevoGasto.setTypeface(null, Typeface.BOLD); // Texto en negrita para realismo
-                nuevoGasto.setTextColor(getResources().getColor(R.color.text_black));
-                int padH = (int) getResources().getDimension(R.dimen.padding_card_h);
-                int padV = (int) getResources().getDimension(R.dimen.padding_card_v);
-                nuevoGasto.setPadding(padH, padV, padH, padV); // Espaciado interno de la tarjeta
-
-                //Fondo con bordes redondeados
-                nuevoGasto.setBackgroundResource(R.drawable.item_gasto_bg);
-
-                //Márgenes entre tarjetas
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                );
-                int marginB = (int) getResources().getDimension(R.dimen.margin_card);
-                params.setMargins(0, 0, 0, marginB); // Margen de 25px abajo de cada tarjeta
-                nuevoGasto.setLayoutParams(params);
-
-                // Agregado al inicio de la lista (el ultimo arriba)
-                containerGastos.addView(nuevoGasto, 0);
+                db.collection("gastos")
+                        .add(gasto)
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(MainActivity.this, getString(R.string.msg_error_guardar), Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
                 // Limpiamos campos para siguiente gasto
                 etDescripcion.setText("");

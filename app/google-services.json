@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1085926601711",
+    "project_id": "cashflow-6b07a",
+    "storage_bucket": "cashflow-6b07a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085926601711:android:55d53511a2283cfbedfc1a",
+        "android_client_info": {
+          "package_name": "com.example.parcial_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOxUngNEkh3o9hiO3Zzrhkdq8rDK6fwX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

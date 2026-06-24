@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+CONTEXT.md
+.idea/markdown.xml
+.vscode/
