@@ -103,12 +103,12 @@ public class MainActivity extends AppCompatActivity {
 
                                     // Creación dinámica
                                     TextView nuevoGasto = new TextView(MainActivity.this);
-                                    nuevoGasto.setText(textToShow + "\n$" + monto); // Descripción y monto con salto de línea
+                                    nuevoGasto.setText(textToShow + ": $" + String.format("%.2f", monto));
                                     nuevoGasto.setTextSize(17);
                                     nuevoGasto.setTypeface(null, Typeface.BOLD); // Texto en negrita para realismo
                                     nuevoGasto.setTextColor(getResources().getColor(R.color.text_black));
-                                    int padH = (int) getResources().getDimension(R.dimen.padding_card_h);
-                                    int padV = (int) getResources().getDimension(R.dimen.padding_card_v);
+                                    int padH = (int) getResources().getDimension(R.dimen.padding_card_h_compact);
+                                    int padV = (int) getResources().getDimension(R.dimen.padding_card_v_compact);
                                     nuevoGasto.setPadding(padH, padV, padH, padV); // Espaciado interno de la tarjeta
 
                                     //Fondo con bordes redondeados
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                                             LinearLayout.LayoutParams.MATCH_PARENT,
                                             LinearLayout.LayoutParams.WRAP_CONTENT
                                     );
-                                    int marginB = (int) getResources().getDimension(R.dimen.margin_card);
+                                    int marginB = (int) getResources().getDimension(R.dimen.margin_card_compact);
                                     params.setMargins(0, 0, 0, marginB); // Margen de 25px abajo de cada tarjeta
                                     nuevoGasto.setLayoutParams(params);
 

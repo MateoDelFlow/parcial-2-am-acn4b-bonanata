@@ -129,16 +129,21 @@
 
     <TextView
         android:id="@+id/tv_total_display"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_medium"
         android:text="@string/label_total"
-        android:textSize="@dimen/text_total"
+        android:textSize="@dimen/text_total_large"
         android:textStyle="bold"
         android:textColor="@color/primary_purple"
+        android:gravity="center"
+        android:background="@drawable/bg_total_banner"
+        android:paddingStart="@dimen/padding_banner_h"
+        android:paddingEnd="@dimen/padding_banner_h"
+        android:paddingTop="@dimen/padding_banner_v"
+        android:paddingBottom="@dimen/padding_banner_v"
         app:layout_constraintTop_toBottomOf="@id/layout_buttons"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_recientes_titulo"
