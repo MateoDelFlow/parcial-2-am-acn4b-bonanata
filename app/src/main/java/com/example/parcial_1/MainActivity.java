@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private View ivTopLogo;
     private double totalAcumulado = 0.0;
     private FirebaseFirestore db;
+    private Spinner spCategoria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         btnIrReportes = findViewById(R.id.btn_ir_reportes);
         containerGastos = findViewById(R.id.container_gastos); // Vinculación del contenedor
         ivTopLogo = findViewById(R.id.iv_top_logo);
+        spCategoria = findViewById(R.id.sp_categoria);
 
         db = FirebaseFirestore.getInstance();
 
@@ -72,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
                             java.util.List<QueryDocumentSnapshot> docs = new java.util.ArrayList<>();
                             for (QueryDocumentSnapshot doc : value) {
                                 docs.add(doc);
+                                Double monto = doc.getDouble("monto");
+                                if (monto != null) {
+                                    totalAcumulado += monto;
+                                }
                             }
                             java.util.Collections.sort(docs, new java.util.Comparator<QueryDocumentSnapshot>() {
                                 @Override
@@ -84,15 +91,19 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
 
-                            for (QueryDocumentSnapshot doc : docs) {
+                            for (final QueryDocumentSnapshot doc : docs) {
                                 String desc = doc.getString("descripcion");
                                 Double monto = doc.getDouble("monto");
+                                String cat = doc.getString("categoria");
                                 if (desc != null && monto != null) {
-                                    totalAcumulado += monto;
+                                    String textToShow = desc;
+                                    if (cat != null && !cat.isEmpty()) {
+                                        textToShow = cat + " - " + desc;
+                                    }
 
                                     // Creación dinámica
                                     TextView nuevoGasto = new TextView(MainActivity.this);
-                                    nuevoGasto.setText(desc + "\n$" + monto); // Descripción y monto con salto de línea
+                                    nuevoGasto.setText(textToShow + "\n$" + monto); // Descripción y monto con salto de línea
                                     nuevoGasto.setTextSize(17);
                                     nuevoGasto.setTypeface(null, Typeface.BOLD); // Texto en negrita para realismo
                                     nuevoGasto.setTextColor(getResources().getColor(R.color.text_black));
@@ -111,6 +122,24 @@ public class MainActivity extends AppCompatActivity {
                                     int marginB = (int) getResources().getDimension(R.dimen.margin_card);
                                     params.setMargins(0, 0, 0, marginB); // Margen de 25px abajo de cada tarjeta
                                     nuevoGasto.setLayoutParams(params);
+
+                                    nuevoGasto.setOnLongClickListener(new View.OnLongClickListener() {
+                                        @Override
+                                        public boolean onLongClick(View v) {
+                                            new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this)
+                                                    .setTitle(getString(R.string.dialog_delete_title))
+                                                    .setMessage(getString(R.string.dialog_delete_msg))
+                                                    .setPositiveButton(getString(R.string.btn_confirmar), new android.content.DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(android.content.DialogInterface dialog, int which) {
+                                                            db.collection("gastos").document(doc.getId()).delete();
+                                                        }
+                                                    })
+                                                    .setNegativeButton(getString(R.string.btn_cancelar), null)
+                                                    .show();
+                                            return true;
+                                        }
+                                    });
 
                                     // Agregado al inicio de la lista (el ultimo arriba)
                                     containerGastos.addView(nuevoGasto, 0);
@@ -160,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
                 gasto.put("descripcion", desc);
                 gasto.put("monto", monto);
                 gasto.put("timestamp", System.currentTimeMillis());
+                gasto.put("categoria", spCategoria.getSelectedItem().toString());
 
                 String currentUserId = "";
                 if (FirebaseAuth.getInstance().getCurrentUser() != null) {
