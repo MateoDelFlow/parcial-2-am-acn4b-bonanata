@@ -36,4 +36,10 @@
     <dimen name="dashboard_logo_size">60dp</dimen>
     <dimen name="margin_dashboard_top">16dp</dimen>
     <dimen name="spinner_min_height">48dp</dimen>
+    <dimen name="padding_banner_h">20dp</dimen>
+    <dimen name="padding_banner_v">12dp</dimen>
+    <dimen name="text_total_large">24sp</dimen>
+    <dimen name="padding_card_h_compact">16dp</dimen>
+    <dimen name="padding_card_v_compact">12dp</dimen>
+    <dimen name="margin_card_compact">8dp</dimen>
 </resources>
