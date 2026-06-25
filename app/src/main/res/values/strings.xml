@@ -24,9 +24,20 @@
     <string name="hint_apodo">Tu apodo (Ej: Pollito)</string>
     <string name="btn_guardar_ajustes">Guardar Configuración</string>
     <string name="msg_ajustes_guardados">Configuración guardada localmente</string>
-    <string name="title_reportes">Reportes Mensuales</string>
+    <string name="title_reportes">Reportes</string>
     <string name="label_gasto_total">Desglose Analítico de Gastos</string>
-    <string name="btn_ver_reportes">Ver Reportes</string>
+    <string name="btn_ver_reportes">Reportes</string>
+    <string-array name="categorias_array">
+        <item>🏠 Vivienda y Servicios</item>
+        <item>🛒 Supermercado</item>
+        <item>🚌 Transporte</item>
+        <item>🏥 Salud</item>
+        <item>📚 Educación</item>
+        <item>🍿 Ocio</item>
+        <item>✈️ Viajes</item>
+        <item>🚗 Auto</item>
+        <item>📦 Otros</item>
+    </string-array>
     <string name="msg_error_guardar">Error al guardar en la nube</string>
     <string name="msg_error_leer">Error al sincronizar datos de la nube</string>
     <string name="msg_error_password_corta">La contraseña debe tener al menos 6 caracteres</string>
@@ -37,4 +48,8 @@
     <string name="label_monto_promedio">Monto promedio: $%s</string>
     <string name="label_config_welcome_default">¡Hola!</string>
     <string name="label_config_welcome">¡Hola, %s!</string>
+    <string name="dialog_delete_title">Eliminar Gasto</string>
+    <string name="dialog_delete_msg">¿Estás seguro de que deseas borrar este gasto?</string>
+    <string name="btn_confirmar">Confirmar</string>
+    <string name="btn_cancelar">Cancelar</string>
 </resources>

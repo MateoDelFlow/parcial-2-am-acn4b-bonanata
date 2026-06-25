@@ -33,4 +33,7 @@
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="text_welcome">18sp</dimen>
     <dimen name="avatar_size">100dp</dimen>
+    <dimen name="dashboard_logo_size">60dp</dimen>
+    <dimen name="margin_dashboard_top">16dp</dimen>
+    <dimen name="spinner_min_height">48dp</dimen>
 </resources>
