@@ -47,7 +47,7 @@
         android:inputType="textEmailAddress"
         android:backgroundTint="@color/primary_purple"
         android:drawableStart="@drawable/ic_mail"
-        android:drawablePadding="8dp"
+        android:drawablePadding="@dimen/drawable_padding"
         app:layout_constraintTop_toBottomOf="@id/tv_login_title"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -61,7 +61,7 @@
         android:inputType="textPassword"
         android:backgroundTint="@color/primary_purple"
         android:drawableStart="@drawable/ic_lock"
-        android:drawablePadding="8dp"
+        android:drawablePadding="@dimen/drawable_padding"
         app:layout_constraintTop_toBottomOf="@id/et_login_email"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -24,4 +24,13 @@
     <dimen name="text_button">16sp</dimen>
     <dimen name="text_total">20sp</dimen>
     <dimen name="text_subtitle">18sp</dimen>
+
+    <!-- Agregados Nota 10 -->
+    <dimen name="drawable_padding">8dp</dimen>
+    <dimen name="text_reports">17sp</dimen>
+    <dimen name="text_reports_sub">18sp</dimen>
+    <dimen name="margin_reports_top">24dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="text_welcome">18sp</dimen>
+    <dimen name="avatar_size">100dp</dimen>
 </resources>

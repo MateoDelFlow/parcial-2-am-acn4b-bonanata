@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_medium"
         android:text="@string/label_gasto_total"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_reports_sub"
         android:textColor="@color/text_black"
         app:layout_constraintTop_toBottomOf="@id/tv_reportes_title"
         app:layout_constraintStart_toStartOf="parent" />
@@ -35,12 +35,12 @@
         android:id="@+id/tv_cantidad_gastos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/margin_reports_top"
         android:text="@string/label_cantidad_gastos_default"
-        android:textSize="17sp"
+        android:textSize="@dimen/text_reports"
         android:textColor="@color/text_black"
         android:drawableStart="@drawable/ic_person"
-        android:drawablePadding="8dp"
+        android:drawablePadding="@dimen/drawable_padding"
         app:layout_constraintTop_toBottomOf="@id/tv_reportes_sub"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -48,12 +48,12 @@
         android:id="@+id/tv_monto_promedio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_normal"
         android:text="@string/label_monto_promedio_default"
-        android:textSize="17sp"
+        android:textSize="@dimen/text_reports"
         android:textColor="@color/text_black"
         android:drawableStart="@drawable/ic_money"
-        android:drawablePadding="8dp"
+        android:drawablePadding="@dimen/drawable_padding"
         app:layout_constraintTop_toBottomOf="@id/tv_cantidad_gastos"
         app:layout_constraintStart_toStartOf="parent" />
 
