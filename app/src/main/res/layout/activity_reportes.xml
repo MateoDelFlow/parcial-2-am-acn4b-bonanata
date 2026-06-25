@@ -57,4 +57,20 @@
         app:layout_constraintTop_toBottomOf="@id/tv_cantidad_gastos"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/tv_monto_promedio"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/container_gastos_reportes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/padding_list_bottom" />
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
