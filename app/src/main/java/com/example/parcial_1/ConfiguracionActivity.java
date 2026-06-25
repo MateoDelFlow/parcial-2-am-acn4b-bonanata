@@ -6,13 +6,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ConfiguracionActivity extends AppCompatActivity {
 
     private EditText etApodo, etMoneda;
     private Button btnGuardar;
+    private TextView tvWelcome;
     private static final String PREFS_NAME = "CashFlowPrefs"; // Nombre del archivo XML de persistencia (Clase 09)
 
     @Override
@@ -23,13 +27,31 @@ public class ConfiguracionActivity extends AppCompatActivity {
         etApodo = findViewById(R.id.et_config_apodo);
         etMoneda = findViewById(R.id.et_config_moneda);
         btnGuardar = findViewById(R.id.btn_config_guardar);
+        tvWelcome = findViewById(R.id.tv_config_welcome);
 
         // Inicializamos las SharedPreferences en modo de acceso privado (Clase 09)
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        final String currentUid = currentUser != null ? currentUser.getUid() : "";
+
         // Recuperamos los datos previamente guardados. Si no existen, usamos strings por defecto (Clase 09)
-        etApodo.setText(prefs.getString("user_apodo", ""));
-        etMoneda.setText(prefs.getString("user_moneda", "ARS"));
+        String apodoGuardado = prefs.getString(currentUid + "_user_apodo", "");
+        String apodoParaMostrar = apodoGuardado;
+        if (apodoParaMostrar.isEmpty()) {
+            if (currentUser != null && currentUser.getEmail() != null) {
+                String email = currentUser.getEmail();
+                apodoParaMostrar = email.split("@")[0];
+            }
+        }
+        etApodo.setText(apodoGuardado.isEmpty() ? apodoParaMostrar : apodoGuardado);
+        etMoneda.setText(prefs.getString(currentUid + "_user_moneda", "ARS"));
+
+        if (!apodoParaMostrar.isEmpty()) {
+            tvWelcome.setText(getString(R.string.label_config_welcome, apodoParaMostrar));
+        } else {
+            tvWelcome.setText(getString(R.string.label_config_welcome_default));
+        }
 
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,8 +61,8 @@ public class ConfiguracionActivity extends AppCompatActivity {
 
                 // Instanciamos el Editor para guardar de forma clave-valor (Clase 09)
                 SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("user_apodo", apodo);
-                editor.putString("user_moneda", moneda);
+                editor.putString(currentUid + "_user_apodo", apodo);
+                editor.putString(currentUid + "_user_moneda", moneda);
                 editor.apply(); // Guarda los cambios de manera asíncrona en segundo plano (Clase 09)
 
                 Toast.makeText(ConfiguracionActivity.this, getString(R.string.msg_ajustes_guardados), Toast.LENGTH_SHORT).show();

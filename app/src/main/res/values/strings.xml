@@ -15,6 +15,9 @@
     <string name="hint_contrasenia">Contraseña</string>
     <string name="btn_ingresar">Ingresar</string>
     <string name="btn_registro_link">¿No tienes cuenta? Regístrate</string>
+    <string name="btn_registrarse">Registrarse</string>
+    <string name="btn_login_link">¿Ya tienes cuenta? Inicia sesión</string>
+    <string name="msg_credenciales_invalidas">Credenciales inválidas</string>
     <string name="msg_login_exitoso">¡Bienvenido, %s!</string>
     <string name="title_ajustes">Ajustes</string>
     <string name="label_moneda">Moneda preferida (USD / ARS)</string>
@@ -26,4 +29,12 @@
     <string name="btn_ver_reportes">Ver Reportes</string>
     <string name="msg_error_guardar">Error al guardar en la nube</string>
     <string name="msg_error_leer">Error al sincronizar datos de la nube</string>
+    <string name="msg_error_password_corta">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="msg_auth_failed">Error de autenticación</string>
+    <string name="label_cantidad_gastos_default">Cantidad de gastos: --</string>
+    <string name="label_monto_promedio_default">Monto promedio: $0.00</string>
+    <string name="label_cantidad_gastos">Cantidad de gastos: %s</string>
+    <string name="label_monto_promedio">Monto promedio: $%s</string>
+    <string name="label_config_welcome_default">¡Hola!</string>
+    <string name="label_config_welcome">¡Hola, %s!</string>
 </resources>

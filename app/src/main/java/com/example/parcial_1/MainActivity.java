@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -49,8 +50,13 @@ public class MainActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
+        String userId = "";
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        }
+
         db.collection("gastos")
-                .orderBy("timestamp", Query.Direction.ASCENDING)
+                .whereEqualTo("userId", userId)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -63,7 +69,22 @@ public class MainActivity extends AppCompatActivity {
                             containerGastos.removeAllViews();
                             totalAcumulado = 0.0;
 
+                            java.util.List<QueryDocumentSnapshot> docs = new java.util.ArrayList<>();
                             for (QueryDocumentSnapshot doc : value) {
+                                docs.add(doc);
+                            }
+                            java.util.Collections.sort(docs, new java.util.Comparator<QueryDocumentSnapshot>() {
+                                @Override
+                                public int compare(QueryDocumentSnapshot o1, QueryDocumentSnapshot o2) {
+                                    Long t1 = o1.getLong("timestamp");
+                                    Long t2 = o2.getLong("timestamp");
+                                    if (t1 == null) t1 = 0L;
+                                    if (t2 == null) t2 = 0L;
+                                    return t1.compareTo(t2);
+                                }
+                            });
+
+                            for (QueryDocumentSnapshot doc : docs) {
                                 String desc = doc.getString("descripcion");
                                 Double monto = doc.getDouble("monto");
                                 if (desc != null && monto != null) {
@@ -139,6 +160,12 @@ public class MainActivity extends AppCompatActivity {
                 gasto.put("descripcion", desc);
                 gasto.put("monto", monto);
                 gasto.put("timestamp", System.currentTimeMillis());
+
+                String currentUserId = "";
+                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                    currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                }
+                gasto.put("userId", currentUserId);
 
                 db.collection("gastos")
                         .add(gasto)
