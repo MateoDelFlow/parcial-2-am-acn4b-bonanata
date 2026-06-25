@@ -20,17 +20,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/iv_config_avatar"
+        android:layout_width="@dimen/avatar_size"
+        android:layout_height="@dimen/avatar_size"
+        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@id/tv_config_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/tv_config_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_normal"
         android:text="@string/label_config_welcome_default"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_welcome"
         android:textColor="@color/primary_purple"
         android:textStyle="italic"
-        app:layout_constraintTop_toBottomOf="@id/tv_config_title"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/iv_config_avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/et_config_apodo"
@@ -41,7 +51,7 @@
         android:inputType="textPersonName"
         android:backgroundTint="@color/primary_purple"
         android:drawableStart="@drawable/ic_person"
-        android:drawablePadding="8dp"
+        android:drawablePadding="@dimen/drawable_padding"
         app:layout_constraintTop_toBottomOf="@id/tv_config_welcome"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -54,7 +64,7 @@
         android:inputType="textCapCharacters"
         android:backgroundTint="@color/primary_purple"
         android:drawableStart="@drawable/ic_money"
-        android:drawablePadding="8dp"
+        android:drawablePadding="@dimen/drawable_padding"
         app:layout_constraintTop_toBottomOf="@id/et_config_apodo"
         app:layout_constraintStart_toStartOf="parent" />
 

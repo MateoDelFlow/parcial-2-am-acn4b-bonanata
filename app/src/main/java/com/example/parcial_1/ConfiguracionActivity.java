@@ -6,17 +6,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.bumptech.glide.Glide;
 
 public class ConfiguracionActivity extends AppCompatActivity {
 
     private EditText etApodo, etMoneda;
     private Button btnGuardar;
     private TextView tvWelcome;
+    private ImageView ivAvatar;
     private static final String PREFS_NAME = "CashFlowPrefs"; // Nombre del archivo XML de persistencia (Clase 09)
 
     @Override
@@ -28,12 +31,19 @@ public class ConfiguracionActivity extends AppCompatActivity {
         etMoneda = findViewById(R.id.et_config_moneda);
         btnGuardar = findViewById(R.id.btn_config_guardar);
         tvWelcome = findViewById(R.id.tv_config_welcome);
+        ivAvatar = findViewById(R.id.iv_config_avatar);
 
         // Inicializamos las SharedPreferences en modo de acceso privado (Clase 09)
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         final String currentUid = currentUser != null ? currentUser.getUid() : "";
+
+        if (!currentUid.isEmpty()) {
+            Glide.with(this)
+                    .load("https://api.dicebear.com/7.x/bottts/png?seed=" + currentUid)
+                    .into(ivAvatar);
+        }
 
         // Recuperamos los datos previamente guardados. Si no existen, usamos strings por defecto (Clase 09)
         String apodoGuardado = prefs.getString(currentUid + "_user_apodo", "");
